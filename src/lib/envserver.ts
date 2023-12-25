@@ -1,11 +1,15 @@
-import { string, z } from 'zod';
+import { dev } from '$app/environment';
+import { z } from 'zod';
 
 const envSchema = z.object({
     // envClient: z.object({
     // port: z.number().default(5173),
     // }),
-    
-    env: z.string().regex(/^(dev|prod)$/).default('dev'),
+
+    env: z
+        .string()
+        .regex(/^(dev|prod)$/)
+        .default('dev'),
     db: z.object({
         host: z.string().default('localhost'),
         port: z.number().default(5432),
@@ -16,7 +20,7 @@ const envSchema = z.object({
 });
 
 const envServer = envSchema.safeParse({
-    env: process?.env?.NODE_ENV ?? 'dev',
+    env: (process?.env?.STAGE_ENV && !dev) ?? 'dev',
     db: {
         host: process?.env?.POSTGRES_HOST ?? 'localhost',
         port: process?.env?.POSTGRES_PORT ?? 5432,
