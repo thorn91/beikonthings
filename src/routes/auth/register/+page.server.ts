@@ -1,7 +1,16 @@
 import { auth } from '$lib/server/lucia';
 import { fail, redirect } from '@sveltejs/kit';
 
-import type { Actions } from './$types';
+import type { PageServerLoad, Actions } from './$types';
+import db from '$lib/server/prisma';
+
+export const load: PageServerLoad = async ({ locals }) => {
+    const session = await locals.auth?.validate();
+
+    if (session) throw redirect(302, '/');
+
+    return {};
+};
 
 export const actions: Actions = {
     default: async ({ request, locals }) => {
@@ -44,6 +53,8 @@ export const actions: Actions = {
                 userId: user.userId,
                 attributes: {}
             });
+
+            console.log(locals);
 
             locals.auth.setSession(session);
         } catch (e) {
