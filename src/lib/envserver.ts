@@ -11,6 +11,7 @@ const envSchema = z.object({
         .regex(/^(dev|prod)$/)
         .default('dev'),
     db: z.object({
+        connString: z.string().default('postgres://postgres:postgres@localhost:5432/beikon'),
         host: z.string().default('localhost'),
         port: z.number().default(5432),
         user: z.string().default('postgres'),
