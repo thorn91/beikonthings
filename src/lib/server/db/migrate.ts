@@ -1,11 +1,11 @@
-import { migrate } from "drizzle-orm/node-postgres/migrator";
-import { db, pool } from ".";
+import { migrate } from 'drizzle-orm/node-postgres/migrator';
+import { db, pool } from './db';
 
 await migratePublicSchemaDown();
 
 await migrate(db, {
-    migrationsFolder: './src/lib/server/db/drizzle',
-})
+    migrationsFolder: './src/lib/server/db/drizzle'
+});
 
 await pool.end();
 

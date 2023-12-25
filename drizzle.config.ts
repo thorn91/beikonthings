@@ -4,7 +4,7 @@ export default {
     schema: './src/lib/server/db/schema.ts',
     out: './src/lib/server/db/drizzle',
     dbCredentials: {
-        connectionString: 'postgres://postgres:postgres@localhost:5432/beikon',
+        connectionString: 'postgres://postgres:postgres@localhost:5432/beikon'
     },
-    driver: 'pg',
+    driver: 'pg'
 } satisfies Config;
