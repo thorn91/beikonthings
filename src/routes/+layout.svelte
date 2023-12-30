@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Header from './Header.svelte';
     import './styles.css';
     import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
@@ -7,15 +7,12 @@
     const setupTasks = {
         shoelace: () => {
             setBasePath('.svelte-kit/shoelace');
-            onMount(async () => {
-                await import('@shoelace-style/shoelace');
-            });
+            onMount(async () => await import('@shoelace-style/shoelace'));
         }
     };
 
     function initialize() {
-        const tasks = Object.values(setupTasks);
-        tasks.forEach((task) => task());
+        Object.values(setupTasks).forEach((task) => task());
     }
 
     initialize();
@@ -24,11 +21,11 @@
 <div class="app">
     <Header />
 
-    <main>
+    <main class="content">
         <slot />
     </main>
 
-    <footer></footer>
+    <!-- <footer></footer> -->
 </div>
 
 <style>
@@ -40,13 +37,6 @@
 
     main {
         flex: 1;
-        display: flex;
-        flex-direction: column;
-        padding: 1rem;
-        width: 100%;
-        max-width: 64rem;
-        margin: 0 auto;
-        box-sizing: border-box;
     }
 
     footer {

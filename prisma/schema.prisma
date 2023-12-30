@@ -15,6 +15,10 @@ model User {
   email        String    @unique
   auth_session Session[]
   key          Key[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([email])
 }
 
 model Session {

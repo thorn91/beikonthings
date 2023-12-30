@@ -2,7 +2,6 @@ import { auth } from '$lib/server/lucia';
 import { fail, redirect } from '@sveltejs/kit';
 
 import type { PageServerLoad, Actions } from './$types';
-import db from '$lib/server/prisma';
 
 export const load: PageServerLoad = async ({ locals }) => {
     const session = await locals.auth?.validate();
