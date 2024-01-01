@@ -4,6 +4,9 @@
     import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path.js';
     import { onMount } from 'svelte';
 
+    const { data } = $props();
+    const { user } = data;
+
     const setupTasks = {
         shoelace: () => {
             setBasePath('.svelte-kit/shoelace');
